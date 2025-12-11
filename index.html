@@ -3,311 +3,94 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
 <title>Dashboard Educação</title>
-
-<!-- ÍCONES -->
-<script src="https://unpkg.com/feather-icons"></script>
-
-<style>
-/* -------------------------------------------------- */
-/* RESET / BASE */
-/* -------------------------------------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", Arial, sans-serif;
-}
-
-body {
-    background: var(--bg);
-    color: var(--text);
-    transition: 0.3s ease;
-}
-
-/* -------------------------------------------------- */
-/* VARIÁVEIS – CLARO / ESCURO */
-/* -------------------------------------------------- */
-:root {
-    --bg: #f5f7fb;
-    --text: #1f2a44;
-    --card: #ffffff;
-    --primary: #0d63ff;
-    --primary-hover: #004de0;
-    --sidebar-bg: #ffffff;
-}
-
-body.dark {
-    --bg: #0f1117;
-    --text: #e6ecf4;
-    --card: #1a1d25;
-    --primary: #4da3ff;
-    --primary-hover: #1c7fe6;
-    --sidebar-bg: #161921;
-}
-
-/* -------------------------------------------------- */
-/* HEADER */
-/* -------------------------------------------------- */
-header {
-    background: var(--primary);
-    padding: 12px 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #fff;
-}
-
-header nav {
-    display: flex;
-    gap: 25px;
-}
-
-header nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.2s;
-}
-
-header nav a:hover {
-    opacity: 0.7;
-}
-
-.toggle-dark {
-    cursor: pointer;
-    padding: 8px 12px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 6px;
-}
-
-/* -------------------------------------------------- */
-/* LAYOUT */
-/* -------------------------------------------------- */
-.container {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 30px;
-    padding: 30px;
-    transition: 0.3s ease;
-}
-
-.sidebar {
-    background: var(--sidebar-bg);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.09);
-    transition: 0.3s ease;
-    overflow: hidden;
-}
-
-.sidebar h2 {
-    font-size: 15px;
-    margin: 25px 0 10px;
-    text-transform: uppercase;
-    opacity: 0.7;
-    letter-spacing: 1px;
-}
-
-.sidebar a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 12px 16px;
-    margin-bottom: 10px;
-    font-size: 15px;
-    border-radius: 8px;
-    text-decoration: none;
-    cursor: pointer;
-    background: var(--primary);
-    color: #fff;
-    transition: 0.2s ease;
-}
-
-.sidebar a:hover {
-    background: var(--primary-hover);
-}
-
-.sidebar .secondary {
-    background: rgba(0,0,0,0.08);
-    color: var(--text);
-}
-
-body.dark .sidebar .secondary {
-    background: rgba(255,255,255,0.12);
-    color: var(--text);
-}
-
-.sidebar .secondary:hover {
-    opacity: 0.8;
-}
-
-/* -------------------------------------------------- */
-/* COLAPSO DO MENU */
-/* -------------------------------------------------- */
-.sidebar.collapsed {
-    width: 70px;
-    transition: width 0.25s ease;
-}
-
-.sidebar.collapsed h2 {
-    opacity: 0;
-    height: 0;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar.collapsed a span.text {
-    display: none;
-}
-
-/* Botão colapsar */
-.collapse-btn {
-    background: var(--primary);
-    color: #fff;
-    padding: 8px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-/* -------------------------------------------------- */
-/* CONTEÚDO */
-/* -------------------------------------------------- */
-.main {
-    background: var(--card);
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-    animation: fadeIn 0.6s;
-}
-
-.main h1 {
-    font-size: 26px;
-    margin-bottom: 22px;
-}
-
-/* -------------------------------------------------- */
-/* BOTÕES */
-/* -------------------------------------------------- */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 24px;
-    background: var(--primary);
-    color: white;
-    border-radius: 8px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-.btn:hover {
-    background: var(--primary-hover);
-}
-
-/* -------------------------------------------------- */
-/* ANIMAÇÕES */
-/* -------------------------------------------------- */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* -------------------------------------------------- */
-/* RESPONSIVO */
-/* -------------------------------------------------- */
-@media (max-width: 900px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    .sidebar {
-        order: 2;
-    }
-}
-</style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900">
 
 <!-- ---------------- HEADER ---------------- -->
-<header>
-    <div class="logo">
-        <strong>Educação Municipal</strong>
-    </div>
+<header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <strong class="text-lg">Educação Municipal</strong>
 
-    <nav>
-        <a href="#">Requerimento</a>
-        <a href="#">Cadastro</a>
-        <a href="#">Declaração</a>
-        <a href="#">Aulas</a>
+    <nav class="flex gap-4">
+        <a href="#" class="hover:underline">Requerimento</a>
+        <a href="#" class="hover:underline">Cadastro</a>
+        <a href="#" class="hover:underline">Declaração</a>
+        <a href="#" class="hover:underline">Aulas</a>
     </nav>
 
-    <div class="toggle-dark" id="darkToggle">
+    <button id="darkToggle" class="p-2 bg-white text-blue-600 rounded">
         🌙
-    </div>
+    </button>
 </header>
 
 <!-- ---------------- LAYOUT ---------------- -->
-<div class="container">
+<div class="flex gap-6 p-6">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
+    <aside id="sidebar" class="bg-white w-64 p-4 rounded-lg shadow-lg space-y-4">
 
-        <div class="collapse-btn" id="collapseBtn">
-            <i data-feather="menu"></i> <span class="text">Menu</span>
+        <button id="collapseBtn" class="flex items-center gap-2 text-blue-600 font-semibold">
+            📋 <span class="text">Menu</span>
+        </button>
+
+        <div class="space-y-2">
+            <h2 class="uppercase text-sm text-gray-500">Professor</h2>
+            <a href="#" class="flex items-center gap-2 text-blue-600 hover:text-blue-800">➕ Cadastrar Professor</a>
         </div>
 
-        <h2>Professor</h2>
-        <a href="#"><i data-feather="user-plus"></i> <span class="text">Cadastrar Professor</span></a>
+        <div class="space-y-2">
+            <h2 class="uppercase text-sm text-gray-500">Aulas</h2>
+            <a href="#" class="flex items-center gap-2 text-blue-600 hover:text-blue-800">✍️ Registrar / Imprimir Aulas</a>
+        </div>
 
-        <h2>Aulas</h2>
-        <a href="#"><i data-feather="edit"></i> <span class="text">Registrar / Imprimir Aulas</span></a>
+        <div class="space-y-2">
+            <h2 class="uppercase text-sm text-gray-500">Notas</h2>
+            <a href="#" class="flex items-center gap-2 text-blue-600 hover:text-blue-800">📘 Registro de Notas</a>
+        </div>
 
-        <h2>Notas</h2>
-        <a href="#"><i data-feather="book-open"></i> <span class="text">Registro de Notas</span></a>
+        <div class="space-y-2">
+            <h2 class="uppercase text-sm text-gray-500">Declarações</h2>
+            <a href="#" class="flex items-center gap-2 text-gray-700 hover:text-blue-600">📄 Educação Infantil</a>
+            <a href="#" class="flex items-center gap-2 text-gray-700 hover:text-blue-600">🗒️ Ensino Fundamental</a>
+            <a href="#" class="flex items-center gap-2 text-gray-700 hover:text-blue-600">📚 Ensino EJA</a>
+        </div>
 
-        <h2>Declarações</h2>
-        <a href="#" class="secondary"><i data-feather="file"></i> <span class="text">Educação Infantil</span></a>
-        <a href="#" class="secondary"><i data-feather="file-text"></i> <span class="text">Ensino Fundamental</span></a>
-        <a href="#" class="secondary"><i data-feather="layers"></i> <span class="text">Ensino EJA</span></a>
+        <div class="space-y-2">
+            <h2 class="uppercase text-sm text-gray-500">Administrativo</h2>
+            <a href="#" class="flex items-center gap-2 text-gray-700 hover:text-blue-600">⚙️ Administrativo</a>
+        </div>
 
-        <h2>Administrativo</h2>
-        <a href="#" class="secondary"><i data-feather="settings"></i> <span class="text">Administrativo</span></a>
+        <div class="space-y-2">
+            <h2 class="uppercase text-sm text-gray-500">Supervisores</h2>
+            <a href="#" class="flex items-center gap-2 text-gray-700 hover:text-blue-600">👥 Supervisores / Coord.</a>
+        </div>
 
-        <h2>Supervisores</h2>
-        <a href="#" class="secondary"><i data-feather="users"></i> <span class="text">Supervisores / Coord.</span></a>
     </aside>
 
-    <!-- MAIN -->
-    <main class="main">
-        <h1>Requerimento de Matrícula – Ano Letivo 2025</h1>
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4">Requerimento de Matrícula – Ano Letivo 2025</h1>
 
-        <a href="#" class="btn">
-            <i data-feather="download"></i> Baixar Requerimento 2025
+        <a href="#" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-3 rounded hover:bg-blue-700">
+            ⬇️ Baixar Requerimento 2025
         </a>
     </main>
 
 </div>
 
-
-<!-- Ícones -->
+<!-- JavaScript (Dark mode + Collapse) -->
 <script>
-    feather.replace();
-
-    // Modo dark
-    document.getElementById("darkToggle").onclick = () => {
+    document.getElementById("darkToggle").addEventListener("click", () => {
         document.body.classList.toggle("dark");
-    };
+    });
 
-    // Collapse da sidebar
-    document.getElementById("collapseBtn").onclick = () => {
-        document.getElementById("sidebar").classList.toggle("collapsed");
-    };
+    document.getElementById("collapseBtn").addEventListener("click", () => {
+        document.getElementById("sidebar").classList.toggle("hidden");
+    });
 </script>
 
 </body>
