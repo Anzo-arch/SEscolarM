@@ -1,157 +1,141 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="transition-colors duration-300">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <title>Dashboard Educação</title>
-
-<style>
-  /* Transition para dark mode suave */
-  html {
-    transition: background-color 0.3s, color 0.3s;
-  }
-</style>
 </head>
 
 <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
-<!-- ---------------- HEADER ---------------- -->
-<header class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
+<!-- ================= HEADER ================= -->
+<header class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md fixed w-full z-30">
     <strong class="text-lg">Educação Municipal</strong>
 
     <nav class="hidden sm:flex gap-4 text-sm font-medium">
-        <a href="#" class="hover:underline focus:outline focus:ring">Requerimento</a>
-        <a href="#" class="hover:underline focus:outline focus:ring">Cadastro</a>
-        <a href="#" class="hover:underline focus:outline focus:ring">Declaração</a>
-        <a href="#" class="hover:underline focus:outline focus:ring">Aulas</a>
+        <a href="#" class="hover:underline">Requerimento</a>
+        <a href="#" class="hover:underline">Cadastro</a>
+        <a href="#" class="hover:underline">Declaração</a>
+        <a href="#" class="hover:underline">Aulas</a>
     </nav>
 
-    <div class="flex items-center gap-4">
-        <button id="darkToggle" class="p-2 bg-white text-blue-600 rounded shadow focus:outline focus:ring">
+    <div class="flex items-center gap-3">
+        <button id="darkToggle"
+                aria-label="Alternar tema"
+                class="p-2 bg-white text-blue-600 rounded shadow">
             🌙
         </button>
-        <button id="mobileMenuBtn" class="sm:hidden p-2 bg-white text-blue-600 rounded shadow focus:outline focus:ring">
+
+        <button id="mobileMenuBtn"
+                aria-label="Abrir menu"
+                class="sm:hidden p-2 bg-white text-blue-600 rounded shadow">
             ☰
         </button>
     </div>
 </header>
 
-<!-- ---------------- LAYOUT ---------------- -->
-<div class="flex">
+<!-- ================= LAYOUT ================= -->
+<div class="flex pt-20">
 
     <!-- SIDEBAR -->
     <aside id="sidebar"
-           class="bg-white dark:bg-gray-800 w-64 p-4 space-y-6 shadow-lg fixed inset-y-0 left-0 transform -translate-x-full sm:translate-x-0 transition-transform duration-300 ease-in-out z-20">
+        class="bg-white dark:bg-gray-800 w-64 p-4 space-y-6 shadow-lg fixed inset-y-0 left-0 transform -translate-x-full sm:translate-x-0 transition-all duration-300 z-20">
 
         <button id="collapseBtn"
-                class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold focus:outline focus:ring">
-            📋 <span class="text">Menu</span>
+            class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
+            📋 <span class="menu-text">Menu</span>
         </button>
 
-        <nav class="space-y-4">
+        <nav class="space-y-4 text-sm">
             <div>
-                <h2 class="uppercase text-xs text-gray-500 dark:text-gray-400">Professor</h2>
-                <a href="#"
-                   class="block mt-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 focus:outline focus:ring">
-                    ➕ Cadastrar Professor
-                </a>
+                <h2 class="uppercase text-xs text-gray-500">Professor</h2>
+                <a href="#" class="block mt-1 hover:text-blue-600">➕ <span class="menu-text">Cadastrar Professor</span></a>
             </div>
 
             <div>
-                <h2 class="uppercase text-xs text-gray-500 dark:text-gray-400">Aulas</h2>
-                <a href="#"
-                   class="block mt-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 focus:outline focus:ring">
-                    ✍️ Registrar / Imprimir Aulas
-                </a>
+                <h2 class="uppercase text-xs text-gray-500">Aulas</h2>
+                <a href="#" class="block mt-1 hover:text-blue-600">✍️ <span class="menu-text">Registrar / Imprimir</span></a>
             </div>
 
             <div>
-                <h2 class="uppercase text-xs text-gray-500 dark:text-gray-400">Notas</h2>
-                <a href="#"
-                   class="block mt-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 focus:outline focus:ring">
-                    📘 Registro de Notas
-                </a>
+                <h2 class="uppercase text-xs text-gray-500">Notas</h2>
+                <a href="#" class="block mt-1 hover:text-blue-600">📘 <span class="menu-text">Registro de Notas</span></a>
             </div>
 
             <div>
-                <h2 class="uppercase text-xs text-gray-500 dark:text-gray-400">Declarações</h2>
-                <a href="#"
-                   class="block mt-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline focus:ring">
-                    📄 Educação Infantil
-                </a>
-                <a href="#"
-                   class="block mt-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline focus:ring">
-                    🗒️ Ensino Fundamental
-                </a>
-                <a href="#"
-                   class="block mt-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline focus:ring">
-                    📚 Ensino EJA
-                </a>
-            </div>
-
-            <div>
-                <h2 class="uppercase text-xs text-gray-500 dark:text-gray-400">Administrativo</h2>
-                <a href="#"
-                   class="block mt-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline focus:ring">
-                    ⚙️ Administrativo
-                </a>
-            </div>
-
-            <div>
-                <h2 class="uppercase text-xs text-gray-500 dark:text-gray-400">Supervisores</h2>
-                <a href="#"
-                   class="block mt-1 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline focus:ring">
-                    👥 Supervisores / Coord.
-                </a>
+                <h2 class="uppercase text-xs text-gray-500">Declarações</h2>
+                <a href="#" class="block mt-1">📄 <span class="menu-text">Educação Infantil</span></a>
+                <a href="#" class="block mt-1">🗒️ <span class="menu-text">Ensino Fundamental</span></a>
+                <a href="#" class="block mt-1">📚 <span class="menu-text">EJA</span></a>
             </div>
         </nav>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN -->
     <main class="flex-1 p-8 ml-0 sm:ml-64 transition-all duration-300">
-        <h1 class="text-3xl font-bold mb-6">Requerimento de Matrícula – Ano Letivo 2025</h1>
+        <h1 class="text-3xl font-bold mb-6">
+            Requerimento de Matrícula – Ano Letivo 2025
+        </h1>
 
         <a href="#"
-           class="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700 focus:outline focus:ring">
+           class="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700">
             ⬇️ Baixar Requerimento 2025
         </a>
-
-        <!-- Aqui você pode adicionar mais cards/conteúdos -->
     </main>
 
 </div>
 
-<!-- --------------- SCRIPTS ---------------- -->
+<!-- ================= SCRIPT ================= -->
 <script>
-    const darkToggle = document.getElementById("darkToggle");
-    const body = document.body;
-    const sidebar = document.getElementById("sidebar");
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const html = document.documentElement;
+const darkToggle = document.getElementById("darkToggle");
+const sidebar = document.getElementById("sidebar");
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const collapseBtn = document.getElementById("collapseBtn");
 
-    // Dark Mode persistente (localStorage)
-    if (localStorage.getItem("theme") === "dark") {
-        body.classList.add("dark");
+// ===== Dark Mode com critério do cliente =====
+function applyTheme(theme) {
+    html.classList.toggle("dark", theme === "dark");
+    darkToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+    localStorage.setItem("theme", theme);
+}
+
+// Inicialização
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+    applyTheme(savedTheme);
+} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    applyTheme("dark");
+} else {
+    applyTheme("light");
+}
+
+// Toggle manual
+darkToggle.addEventListener("click", () => {
+    applyTheme(html.classList.contains("dark") ? "light" : "dark");
+});
+
+// ===== Sidebar Mobile =====
+mobileMenuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("-translate-x-full");
+});
+
+// Fecha menu ao clicar fora (mobile)
+document.addEventListener("click", (e) => {
+    if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        sidebar.classList.add("-translate-x-full");
     }
+});
 
-    darkToggle.addEventListener("click", () => {
-        body.classList.toggle("dark");
-        localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
-    });
-
-    // Sidebar mobile toggle
-    mobileMenuBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("-translate-x-full");
-    });
-
-    // Collapse Menu (desktop)
-    document.getElementById("collapseBtn").addEventListener("click", () => {
-        sidebar.classList.toggle("w-20");
-        sidebar.querySelectorAll(".text").forEach(span => span.classList.toggle("hidden"));
-    });
+// ===== Collapse Desktop =====
+collapseBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("w-64");
+    sidebar.classList.toggle("w-20");
+    document.querySelectorAll(".menu-text").forEach(el => el.classList.toggle("hidden"));
+});
 </script>
 
 </body>
